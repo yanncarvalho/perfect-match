@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-quantico: 'Quantico', sans-serif;
+}
+
+@layer base {
+  body {
+    color: black;
+    background: #DBE2EF;
+    font-family: var(--font-quantico);
+  }
+}
+
+@layer utilities {
+
+
+  .font-quantico {
+    font-family: var(--font-quantico);
+    font-weight: normal;
+  }
+}
+
+@layer components {
+
+}
