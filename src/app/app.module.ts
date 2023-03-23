@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
+import { DrawingCircleComponent } from './components/drawing-circle/circle-drawing.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { DrawingCircleComponent } from './components/drawing-circle/drawing-circle.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, DrawingCircleComponent],

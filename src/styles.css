@@ -11,14 +11,12 @@
 @layer base {
   body {
     color: black;
-    background: #DBE2EF;
+    background: #dbe2ef;
     font-family: var(--font-quantico);
   }
 }
 
 @layer utilities {
-
-
   .font-quantico {
     font-family: var(--font-quantico);
     font-weight: normal;
@@ -26,5 +24,4 @@
 }
 
 @layer components {
-
 }
