@@ -1,0 +1,12 @@
+<ng-container *ngIf="!hasError; then canvas; else error"> </ng-container>
+
+<ng-template #canvas>
+  <h2 class="text-center italic select-none">Precision: {{ precision.toFixed(2) }}%</h2>
+  <canvas class="overlay" #handDrawing> </canvas>
+</ng-template>
+
+<ng-template #error>
+  <div class="p-4 mb-4 text-lg text-center text-red-800 rounded-lg bg-red-50" role="alert">
+    <h2 class="font-bold">Unable to load application</h2>
+  </div>
+</ng-template>
