@@ -24,12 +24,9 @@
 }
 
 @layer components {
-<<<<<<< HEAD
   .overlay {
     position: fixed;
     left: 0;
     top: 0;
   }
-=======
->>>>>>> parent of c0cd4e5 (feat: add circle precision test)
 }
