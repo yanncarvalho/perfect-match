@@ -4,6 +4,10 @@
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 A game that challenges you to draw a perfect circle.
+[Click here to access the application](https://yanncarvalho.github.io/perfect-match/).
+
+[![Tests](https://github.com/yanncarvalho/perfect-match/actions/workflows/tests.yml/badge.svg)](https://github.com/yanncarvalho/perfect-match/actions/workflows/tests.yml)
+[![Docker push](https://github.com/yanncarvalho/perfect-match/actions//workflows/docker.yml/badge.svg?branch=main)](https://github.com/yanncarvalho/perfect-match/actions//workflows/docker.yml)
 
 ## Built with ##
 
@@ -13,16 +17,26 @@ A game that challenges you to draw a perfect circle.
 
 ## How to run ##
 
+### Using docker image ###
+
+To run the application with docker run the command:
+
+``` sh
+docker run -p [port]:80 yanncarvalho/perfect-match:latest
+```
+
+### Run without docker container ###
+
 To run the application run the command:
 
 ``` sh
   npm install &&
-  ng s
+  npm run serve
 ```
 
 ## How it works ##
 
-Calculate the Centroid of the figure; then the Eucleadian distance of each point in relation to the Centroid is calculated, finally the Standard Deviation is calculated and a percentage is generated from it.
+It is calculated the Centroid of the figure; then the Eucleadian Distance of each point in relation to the Centroid is calculated, finally the Standard Deviation is calculated and a percentage is generated from it.
 
 ## Author ##
 
