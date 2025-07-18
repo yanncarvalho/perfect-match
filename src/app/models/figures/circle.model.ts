@@ -2,6 +2,8 @@ import { MathUtils } from '../../utils/math-utils.utils';
 import { AbstractFigure } from '../abstract-figure.model';
 
 export class Circle extends AbstractFigure {
+  override figureName = 'Circle';
+
   override isValidShape(): boolean {
     const center = this.centroid;
     const meanRadius = this.meanRadius();

@@ -18,6 +18,8 @@ export abstract class AbstractFigure {
     return MathUtils.centroid(this.drawingCoords);
   }
 
+  public abstract figureName: string;
+
   public cleanDrawingCoords(): void {
     this._drawingCoords = [];
   }

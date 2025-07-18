@@ -62,7 +62,7 @@ export class DrawCanvasService {
 
   public verifyDrawing(): void {
     if (this.figure.isInvalid()) {
-      const figureName = this.figure.constructor.name.toLowerCase();
+      const figureName = this.figure.figureName.toLowerCase();
       this.drawText(`That is not a valid ${figureName}`, 'red', this.ctx, this.figure.centroid);
       return;
     }
