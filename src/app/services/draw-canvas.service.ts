@@ -41,13 +41,23 @@ export class DrawCanvasService {
     this.ctx.closePath();
   }
 
-  public drawText(msg: string, color: string, ctx: CanvasRenderingContext2D, poits: Coordinates): void {
+  public drawText(msg: string, color: string, ctx: CanvasRenderingContext2D, point: Coordinates): void {
+    ctx.save();
     ctx.beginPath();
-    //TODO add colors
-    ctx.font = '30px Quantico';
+    const maxWidth = ctx.canvas.width * 0.8;
+    let fontSize = 18;
+    ctx.font = `${fontSize}px Quantico`;
+    while (ctx.measureText(msg).width > maxWidth && fontSize > 10) {
+      fontSize -= 1;
+      ctx.font = `${fontSize}px Quantico`;
+    }
     ctx.fillStyle = color;
-    ctx.fillText(msg, poits.x, poits.y);
+    const textMetrics = ctx.measureText(msg);
+    const x = textMetrics.width > maxWidth ? ctx.canvas.width * 0.1 : Math.max(0, Math.min(point.x, ctx.canvas.width - textMetrics.width));
+    const y = Math.max(fontSize, Math.min(point.y, ctx.canvas.height - 10));
+    ctx.fillText(msg, x, y, maxWidth);
     ctx.closePath();
+    ctx.restore();
   }
 
   public verifyDrawing(): void {

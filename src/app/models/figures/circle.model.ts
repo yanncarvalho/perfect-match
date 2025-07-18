@@ -2,13 +2,22 @@ import { MathUtils } from '../../utils/math-utils.utils';
 import { AbstractFigure } from '../abstract-figure.model';
 
 export class Circle extends AbstractFigure {
-  public get precision(): number {
+  override isValidShape(): boolean {
+    const center = this.centroid;
+    const meanRadius = this.meanRadius();
+    const tolerance = AbstractFigure.TOLERANCE_RADIOUS * meanRadius;
+
+    return this.drawingCoords.every((c) => {
+      const dist = MathUtils.eucledeanDistance(c, center);
+      return Math.abs(dist - meanRadius) <= tolerance;
+    });
+  }
+
+  public override get precision(): number {
     const positions = this.distancesFromCentroid();
-    let deriviation = MathUtils.standardDeviation(positions, this.getRadius());
-    if (deriviation > 100) {
-      deriviation = 100;
-    }
-    return 100 - deriviation;
+    const mean = positions.reduce((a, b) => a + b, 0) / positions.length;
+    const deriviation = MathUtils.standardDeviation(positions, this.meanRadius());
+    return Math.max(0, 1 - deriviation / mean) * 100;
   }
 
   public draw(ctx: CanvasRenderingContext2D, color = 'black'): void {
@@ -16,16 +25,12 @@ export class Circle extends AbstractFigure {
     ctx.beginPath();
     ctx.strokeStyle = color;
     ctx.lineWidth = 2;
-    ctx.arc(x, y, this.getRadius(), 0, 2 * Math.PI);
+    ctx.arc(x, y, this.meanRadius(), 0, 2 * Math.PI);
     ctx.stroke();
     ctx.closePath();
   }
 
-  public override isInvalid(): boolean {
-    return super.isInvalid() || this.precision === 0.0 || this.getRadius() <= 20;
-  }
-
-  private getRadius() {
+  private meanRadius() {
     return MathUtils.mean(this.distancesFromCentroid());
   }
 

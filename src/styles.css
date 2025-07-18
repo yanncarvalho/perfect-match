@@ -4,8 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 :root {
   --font-quantico: 'Quantico', sans-serif;
+  overscroll-behavior-y: contain;
+  touch-action: pan-x pan-y;
 }
 
 @layer base {

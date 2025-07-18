@@ -1,5 +1,5 @@
 <app-header></app-header>
-<main>
+<main (touchmove)="preventPullToRefresh($event)" (touchstart)="touchStart($event)" (touchend)="touchEnd()">
   <div class="m-1">
     <h1 class="text-xl text-center font-bold">I dare you to draw a perfect circle...</h1>
   </div>

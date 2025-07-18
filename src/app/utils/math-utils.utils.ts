@@ -12,23 +12,12 @@ export class MathUtils {
   }
 
   static centroid(pts: Coordinates[]): Coordinates {
-    const nPts = pts.length;
-    let twicearea = 0,
-      x = 0,
-      y = 0,
-      p1: Coordinates,
-      p2: Coordinates,
-      f: number;
-    for (let i = 0, j = nPts - 1; i < nPts; j = i++) {
-      p1 = pts[i];
-      p2 = pts[j];
-      f = p1.x * p2.y - p2.x * p1.y;
-      twicearea += f;
-      x += (p1.x + p2.x) * f;
-      y += (p1.y + p2.y) * f;
-    }
-    f = twicearea * 3;
-    return { x: x / f, y: y / f };
+    if (pts.length === 0) return { x: 0, y: 0 };
+    const sum = pts.reduce((acc, p) => ({ x: acc.x + p.x, y: acc.y + p.y }), { x: 0, y: 0 });
+    return {
+      x: sum.x / pts.length,
+      y: sum.y / pts.length,
+    };
   }
 
   static standardDeviation(radiuses: number[], radiusMean: number): number {

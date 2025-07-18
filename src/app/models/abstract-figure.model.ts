@@ -4,6 +4,8 @@ import { Coordinates } from './coordinates.model';
 export abstract class AbstractFigure {
   abstract draw(ctx: CanvasRenderingContext2D, color: string): void;
 
+  protected static TOLERANCE_RADIOUS = 0.8;
+
   abstract get precision(): number;
 
   protected _drawingCoords: Coordinates[] = [];
@@ -25,11 +27,24 @@ export abstract class AbstractFigure {
   }
 
   public isInvalid(): boolean {
-    return !this.isDrawSurround();
+    return this.drawingCoords.length >= 3 && !this.isLine() && !this.isValidShape();
   }
 
-  //TODO fazer função para veficiar se o circulo fecha
-  protected isDrawSurround(): boolean {
+  private isLine(): boolean {
+    const coords = this.drawingCoords;
+    const { x: x0, y: y0 } = coords[0];
+    const { x: x1, y: y1 } = coords[1];
+    const tolerance = 1e-2;
+
+    for (let i = 2; i < coords.length; i++) {
+      const { x, y } = coords[i];
+      const area = Math.abs((x1 - x0) * (y - y0) - (y1 - y0) * (x - x0));
+      if (area > tolerance) {
+        return false;
+      }
+    }
     return true;
   }
+
+  abstract isValidShape(): boolean;
 }
